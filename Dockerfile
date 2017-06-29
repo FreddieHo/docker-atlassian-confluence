@@ -1,9 +1,9 @@
-FROM openjdk:8
+FROM cogniteev/oracle-java:java8 
 
 # Setup useful environment variables
 ENV CONF_HOME     /var/atlassian/confluence
 ENV CONF_INSTALL  /opt/atlassian/confluence
-ENV CONF_VERSION  6.2.3
+ENV CONF_VERSION  6.0.7
 
 ENV JAVA_CACERTS  $JAVA_HOME/jre/lib/security/cacerts
 ENV CERTIFICATE   $CONF_HOME/certificate
@@ -49,6 +49,8 @@ USER daemon:daemon
 
 # Expose default HTTP connector port.
 EXPOSE 8090
+# Reserve for HTTPS
+EXPOSE 8093
 
 # Set volume mount points for installation and home directory. Changes to the
 # home directory needs to be persisted as well as parts of the installation
