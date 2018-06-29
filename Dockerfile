@@ -12,7 +12,7 @@ ENV CERTIFICATE   $CONF_HOME/certificate
 # directory structure.
 RUN set -x \
     && apt-get update --quiet \
-    && apt-get install --quiet --yes --no-install-recommends libtcnative-1 xmlstarlet graphviz \
+    && apt-get install --quiet --yes --no-install-recommends libtcnative-1 xmlstarlet curl joe graphviz \
     && apt-get clean \
     && mkdir -p                "${CONF_HOME}" \
     && chmod -R 700            "${CONF_HOME}" \
