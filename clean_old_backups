@@ -1,0 +1,11 @@
+#!/bin/bash
+
+all_backups=( $(find /backup/Services/Confluence -type f) )
+old_backups=( $(find /backup/Services/Confluence -type f -mtime +7) )
+
+if [ ${#all_backups[@]} -gt 7 ]; then
+    echo Removing old backups:
+    for b in ${old_backups[@]}; do echo "       $b"; rm -rf "$b"; done
+else
+    echo Keep backup files.
+fi
