@@ -45,6 +45,13 @@ RUN set -x \
 # Set appropriate timezone.
 RUN timedatectl set-timezone CST
 
+# Add daily backup cleanup 
+COPY clean_old_backups /var/atlassian/confluence
+COPY crontab /var/atlassian/confluence
+RUN    service crontab start \
+    && crontab /var/atlassian/confluence/crontab \
+    && rm -rf /var/atlassian/confluence/crontab
+
 # Use the default unprivileged account. This could be considered bad practice
 # on systems where multiple processes end up being executed by 'daemon' but
 # here we only ever run one process anyway.
